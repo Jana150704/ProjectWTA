@@ -79,3 +79,38 @@ function createPipes() {
     pipeArray.push(topPipe, bottomPipe);
 
 }  
+
+window.onload = function() {
+    board = document.getElementById("board");
+    board.height = boardHeight;
+    board.width = boardWidth;
+    context = board.getContext ("2d");
+
+    birdImg = new Image();
+    birdImg.src = "./IMAGES/flappybird.png";
+
+    topPipeImg = new Image();
+    topPipeImg.src = "./IMAGES/toppipe.png";
+
+    bottomPipeImg = new Image();
+    bottomPipeImg.src = "./IMAGES/bottompipe.png";
+
+    playButtonImg = new Image();
+    playButtonImg.src = "./IMAGES/flappyBirdPlayButton.png";
+
+    requestAnimationFrame(update);
+}
+
+function update(){
+    requestAnimationFrame(update);
+    context.clearRect(0,0,board.width, board.height);
+
+    if (currentState == GAME_STATE.MENU){
+        renderMenu();
+    }else if(currentState == GAME_STATE.PLAYING){
+        renderGame();
+    }else if(currentState == GAME_STATE.GAME_OVER){
+        renderGameOver();
+    }
+}
+
