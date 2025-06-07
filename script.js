@@ -4,7 +4,7 @@ let backgroundImg = new Image();
 backgroundImg.src = "./IMAGES/flappybirdbg.png";
 let inputLocked = false;
 
-document.addEventListener("keydown" handleKeyDown);
+document.addEventListener("keydown", handleKeyDown);
 
 let GAME_STATE = {
     MENU: "menu",
@@ -33,4 +33,16 @@ flappyBirdTextImg.src = "./IMAGES/flappyBirdLogo.png";
 
 let gameOverTextImg = new Image();
 gameOverTextImg.src = "./IMAGES/flappy-gameover.png";
+
+let bird = {
+    x: 50,
+    y: boardHeight / 2,
+    width: 40,
+    height: 30,
+}
+
+let velocity = 0;
+let gravity = 0.5;
+let birdY = boardHeight / 2;
+
     
