@@ -41,8 +41,41 @@ let bird = {
     height: 30,
 }
 
-let velocity = 0;
+let velocityY = 0;
+let velocityX = -2;
 let gravity = 0.5;
 let birdY = boardHeight / 2;
 
-    
+let pipeWidth = 50;
+let pipeGap = 200;
+let pipeArray = [];
+let pipeIntervalId;
+
+function placePipes() {
+    createPipes()
+}
+
+function createPipes() {
+    let maxTopPipeHeight = boardHeight - pipeGap - 50; // 50 is the bottom margin
+    let topPipeHeight = Math.floor(Math.random() * (maxTopPipeHeight)); // Random height up to maxTopPipeHeight
+    let bottomPipeHeight = boardHeight - topPipeHeight - pipeGap;
+
+    let topPipe = {
+        x : boardWidth,
+        y: 0,
+        width: pipeWidth,
+        height: topPipeHeight,
+        passed: false // Flag to check if the bird has passed this pipe
+    };
+
+    let bottomPipe = {
+        x: boardWidth,
+        y: topPipeHeight + pipeGap,
+        width: pipeWidth,
+        height: bottomPipeHeight,
+        passed: false // Flag to check if the bird has passed this pipe
+    };
+
+    pipeArray.push(topPipe, bottomPipe);
+
+}  
