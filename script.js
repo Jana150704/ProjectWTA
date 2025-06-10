@@ -1,5 +1,5 @@
-let boardWidth = 1000; //360
-let boardHeight = 800; //640
+let boardWidth = 800; //360
+let boardHeight = 900; //640
 let backgroundImg = new Image(); 
 backgroundImg.src = "./IMAGES/flappybirdbg.png"; 
 let inputLocked = false; 
