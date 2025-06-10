@@ -31,7 +31,7 @@ let logo = {
 let flappyBirdTextImg = new Image();
 flappyBirdTextImg.src = "./IMAGES/flappyBirdLogo.png";
 
-let gameOverTextImg = new Image();
+let gameOverImg = new Image();
 gameOverTextImg.src = "./IMAGES/flappy-gameover.png";
 
 let bird = {
@@ -101,6 +101,78 @@ window.onload = function() {
     requestAnimationFrame(update);
 }
 
+function detectCollision
+
+function renderMenu() {
+    if(backgroundImg.complete) {
+        context.drawImage(backgroundImg, 0, 0, boardWidth, boardHeight);
+    }
+    if(playButtonImg.complete) {
+        context.drawImage(playButtonImg, playButton.x, playButton.y, playButton.width, playButton.height);
+    }
+    if(flappyBirdTextImg.complete){
+        let scaledWidth = logo.width;
+        let scaledHeight = (flappyBirdTextImg.height / flappyBirdTextImg.width) * scaledWidth;
+        context.drawImage(flappyBirdTextImg, logo.x, logo.y, scaledWidth, scaledHeight);
+    }
+}
+
+renderGame() {
+   velocityY += gravity;
+   bird.y = Math.max(bird.y + velocityY, 0);
+   context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+
+   if (bird.y > board.height) {
+    currentState = GAME_STATE.GAME_OVER;
+   }
+
+   for(let i = 0; i < pipeArray.length; i++) {
+    let pipe = pipeArray[i];
+    pipe.x += velocityX;
+    context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
+
+    if(!pipe.passed && bird.x > pipe.x + pipe.width){
+        score += 0.5;
+        pipe.passed = true;
+    }
+
+    if (detectCollision(bird, pipe)){
+        currentState = GAME_STATE.GAME_OVER;
+    }
+   }
+
+   while(pipeArray.length > 0 && pipeArray[0].x < -pipeWidth){
+    pipeArray.shift();
+   }
+
+   context.fillStyle = "white";
+   context.font = "45px sans-serif";
+   context.textAlign = "left";
+   context.fillText(score, 5, 45);
+}
+
+renderGameOver() {
+    if (gameOverTextImg.complete){
+        let imgWidth = 400;
+        let imgHeight = 80;
+        let x = (boardWidth -imgWidth) / 2;
+        let y = boardHeight / 3;
+
+        context.drawImage(gameOverImg, x, y, imgWidth, imgHeight);
+
+        let scoreText = 'Your score: ${Math.floor(score)}';
+        context.fillStyle = "white";
+        context.font = "45px sans-serif";
+        context.textAlign = "center";
+        context.fillText(scoreText, boardWidth/ 2, y + imgHeight + 50);
+
+        inputLocked = true;
+        setTimeout(() =>{
+                inputLocked = false;
+        }, 1000);
+    }
+}
+
 function update(){
     requestAnimationFrame(update);
     context.clearRect(0,0,board.width, board.height);
@@ -113,4 +185,6 @@ function update(){
         renderGameOver();
     }
 }
+
+
 
