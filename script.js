@@ -1,10 +1,12 @@
-let boardWidth = 800; //360
-let boardHeight = 900; //640
+let boardWidth = 700; //360
+let boardHeight = 950; //640
 let backgroundImg = new Image(); 
 backgroundImg.src = "./IMAGES/flappybirdbg.png"; 
 let inputLocked = false; 
 
 document.addEventListener("keydown", handleKeyDown); 
+document.addEventListener("mousedown", handleMouseDown);
+
 
 let GAME_STATE = {
     MENU: "menu",
@@ -188,7 +190,7 @@ function renderGameOver() {
 function handleKeyDown(e) {
     if(inputLocked) return; 
 
-    if(e.code === "Space") {
+    if(e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
         if(currentState === GAME_STATE.MENU) {
             startGame(); 
         } else if(currentState === GAME_STATE.GAME_OVER) {
@@ -197,6 +199,19 @@ function handleKeyDown(e) {
         } else if(currentState === GAME_STATE.PLAYING) {
             velocityY = -6;
         }
+    }
+}
+
+function handleMouseDown(e) {
+    if (inputLocked) return;
+
+    if (currentState === GAME_STATE.MENU) {
+        startGame();
+    } else if (currentState === GAME_STATE.GAME_OVER) {
+        resetGame();
+        currentState = GAME_STATE.MENU;
+    } else if (currentState === GAME_STATE.PLAYING) {
+        velocityY = -6;
     }
 }
 
