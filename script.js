@@ -9,7 +9,7 @@ document.addEventListener("mousedown", handleMouseDown);
 
 const backgroundSound = new Audio("./SOUNDS/eccentric_enemies.ogg");
 backgroundSound.loop = true;
-backgroundSound.volume = 0.5;
+backgroundSound.volume = 0.3;
 
 const flapSound = new Audio("./SOUNDS/natterers.mp3");
 const gameoverSound = new Audio("./SOUNDS/pipistrelle.mp3");
@@ -158,6 +158,7 @@ function renderGame() {
         }
 
         if(detectCollision(bird, pipe)) {
+            gameoverSound.play();
             currentState = GAME_STATE.GAME_OVER;
         }
     }
@@ -181,7 +182,7 @@ function renderGameOver() {
 
         context.drawImage(gameOverImg, x, y, imgWidth, imgHeight); 
 
-        let scoreText = 'Your score: ${Math.floor(score)'}; 
+        let scoreText = `Your score: ${Math.floor(score)}`; 
         context.fillStyle = "white"; 
         context.font = "45px sans-serif"; 
         context.textAlign = "center"; 
@@ -192,6 +193,7 @@ function renderGameOver() {
             inputLocked = false;
         }, 1000);
     }
+}
 
 
 function handleKeyDown(e) {
@@ -203,7 +205,7 @@ function handleKeyDown(e) {
         } else if(currentState === GAME_STATE.GAME_OVER) {
             resetGame();
             flapSound.pause();
-            gameoverSound.play();
+            
             currentState = GAME_STATE.MENU;
         } else if(currentState === GAME_STATE.PLAYING) {
             velocityY = -6;
@@ -222,7 +224,7 @@ function handleMouseDown(e) {
     } else if (currentState === GAME_STATE.GAME_OVER) {
         resetGame();
         flapSound.pause();
-        gameoverSound.play();
+        
         currentState = GAME_STATE.MENU;
     } else if (currentState === GAME_STATE.PLAYING) {
         velocityY = -6;
