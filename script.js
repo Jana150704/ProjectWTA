@@ -11,8 +11,8 @@ const backgroundSound = new Audio("./SOUNDS/eccentric_enemies.ogg");
 backgroundSound.loop = true;
 backgroundSound.volume = 0.5;
 
-const flapSound = new Audio('flap.mp3');
-const gameoverSound = new Audio('gameover.mp3');
+const flapSound = new Audio("./SOUNDS/natterers.mp3");
+const gameoverSound = new Audio("./SOUNDS/pipistrelle.mp3");
 
 
 let GAME_STATE = {
@@ -205,6 +205,9 @@ function handleKeyDown(e) {
             currentState = GAME_STATE.MENU;
         } else if(currentState === GAME_STATE.PLAYING) {
             velocityY = -6;
+            flapSound.currentTime = 0;
+            flapSound.play();
+
         }
     }
 }
@@ -219,6 +222,8 @@ function handleMouseDown(e) {
         currentState = GAME_STATE.MENU;
     } else if (currentState === GAME_STATE.PLAYING) {
         velocityY = -6;
+        flapSound.currentTime = 0;
+         flapSound.play();
     }
 }
 
@@ -255,9 +260,5 @@ document.addEventListener('keydown', (e) => {
   if (!gameStarted && e.code === 'Space') {
     gameStarted = true;
     backgroundSound.play();
-  }
-
-  if (e.code === 'Space') {
-    birdFlap();
   }
 });
