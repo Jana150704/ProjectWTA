@@ -26,8 +26,10 @@ export class PipeManager {
         const maxGapCenterY = BOARD_HEIGHT - (PIPE_DEFAULTS.GAP / 2) - 50; // 50px Puffer unten
 
         // 2. Berechne eine zufällige Veränderung basierend auf der letzten Position
-    
-        const verticalChange = (Math.random() * 2 - 1) * PIPE_DEFAULTS.VERTICAL_VARIATION;
+        // Wir erhöhen den Multiplikator hier noch weiter, um größere Sprünge zu erzwingen
+        // und somit die Wahrscheinlichkeit gleicher Höhen zu reduzieren.
+        // ⬇️ GEÄNDERTE ZEILE HIER ⬇️
+        const verticalChange = (Math.random() * 2 - 1) * PIPE_DEFAULTS.VERTICAL_VARIATION * 2.5; // Deutlich erhöhte Variation
         let nextGapCenterY = this.lastPipeY + verticalChange;
 
         // 3. Stelle sicher, dass die neue Position innerhalb der Grenzen liegt (Clamping)

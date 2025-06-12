@@ -18,9 +18,9 @@ export const PHYSICS = {
 
 export const PIPE_DEFAULTS = {
     WIDTH: 50,
-    GAP: 200,
+    GAP: 130,
     INTERVAL: 1500, // Zeit in ms zwischen dem Erscheinen neuer Rohre
-    VERTICAL_VARIATION: 100, // Maximale vertikale Abweichung zur letzten Lücke
+    VERTICAL_VARIATION: 200, // Maximale vertikale Abweichung zur letzten Lücke
 };
 
 // Spielzustände
