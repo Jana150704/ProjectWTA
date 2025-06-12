@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flappy Bird</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="main.js" type="module"></script>
 </head>
 <body>
-    <canvas id="board" width="700" height="950"></canvas>
-      
-  </button>
+    <canvas id="board"></canvas>
+
+    <div id="pauseMenu" class="hidden">
+        <div class="menu-content">
+            <h1>Pause</h1>
+            <div class="slider-container">
+                <label for="volumeSlider">Musik</label>
+                <input type="range" id="volumeSlider" min="0" max="1" value="0.3" step="0.01">
+            </div>
+            <div class="slider-container">
+                <label for="effectsSlider">Effekte</label>
+                <input type="range" id="effectsSlider" min="0" max="1" value="1.0" step="0.01">
+            </div>
+            <button id="resumeButton">Zurück zum Spiel</button>
+        </div>
+    </div>
 </body>
 </html>
