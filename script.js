@@ -7,6 +7,13 @@ let inputLocked = false;
 document.addEventListener("keydown", handleKeyDown); 
 document.addEventListener("mousedown", handleMouseDown);
 
+const backgroundSound = new Audio("./SOUNDS/eccentric_enemies.ogg");
+backgroundSound.loop = true;
+backgroundSound.volume = 0.5;
+
+const flapSound = new Audio('flap.mp3');
+const gameoverSound = new Audio('gameover.mp3');
+
 
 let GAME_STATE = {
     MENU: "menu",
@@ -174,7 +181,7 @@ function renderGameOver() {
 
         context.drawImage(gameOverImg, x, y, imgWidth, imgHeight); 
 
-        let scoreText = `Your score: ${Math.floor(score)}`; 
+        let scoreText = 'Your score: ${Math.floor(score)'}; 
         context.fillStyle = "white"; 
         context.font = "45px sans-serif"; 
         context.textAlign = "center"; 
@@ -185,7 +192,7 @@ function renderGameOver() {
             inputLocked = false;
         }, 1000);
     }
-}
+
 
 function handleKeyDown(e) {
     if(inputLocked) return; 
@@ -241,3 +248,16 @@ function detectCollision(a, b) {
         a.y < b.y + b.height &&
         a.y + a.height > b.y;
 }
+
+let gameStarted = false;
+
+document.addEventListener('keydown', (e) => {
+  if (!gameStarted && e.code === 'Space') {
+    gameStarted = true;
+    backgroundSound.play();
+  }
+
+  if (e.code === 'Space') {
+    birdFlap();
+  }
+});
