@@ -202,6 +202,8 @@ function handleKeyDown(e) {
             startGame(); 
         } else if(currentState === GAME_STATE.GAME_OVER) {
             resetGame();
+            flapSound.pause();
+            gameoverSound.play();
             currentState = GAME_STATE.MENU;
         } else if(currentState === GAME_STATE.PLAYING) {
             velocityY = -6;
@@ -219,6 +221,8 @@ function handleMouseDown(e) {
         startGame();
     } else if (currentState === GAME_STATE.GAME_OVER) {
         resetGame();
+        flapSound.pause();
+        gameoverSound.play();
         currentState = GAME_STATE.MENU;
     } else if (currentState === GAME_STATE.PLAYING) {
         velocityY = -6;
