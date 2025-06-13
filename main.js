@@ -1,4 +1,3 @@
-// main.js: Der Haupteinstiegspunkt des Spiels.
 
 import { BOARD_WIDTH, BOARD_HEIGHT, GAME_STATE } from './config.js';
 import { IMAGES, SOUNDS } from './assets.js';
@@ -12,7 +11,6 @@ window.onload = () => {
     board.height = BOARD_HEIGHT;
     const context = board.getContext("2d");
 
-    // UI-Elemente aus dem DOM holen
     const pauseMenuElement = document.getElementById('pauseMenu');
     const volumeSlider = document.getElementById('volumeSlider');
     const effectsSlider = document.getElementById('effectsSlider');
@@ -22,7 +20,6 @@ window.onload = () => {
     
     setupInputHandlers(game);
 
-    // Event-Listener für die UI-Elemente im Pause-Menü
     resumeButton.addEventListener('click', () => {
         game.togglePause();
     });
@@ -35,9 +32,8 @@ window.onload = () => {
         game.setEffectsVolume(e.target.value);
     });
     
-    // Initiale Werte der Slider setzen
     volumeSlider.value = SOUNDS.background.volume;
-    effectsSlider.value = SOUNDS.flap.volume; // Setzt den Wert basierend auf einem der Effekt-Sounds
+    effectsSlider.value = SOUNDS.flap.volume;
 
     function gameLoop() {
         requestAnimationFrame(gameLoop);

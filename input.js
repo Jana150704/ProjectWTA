@@ -1,4 +1,3 @@
-// input.js: Richtet die Eingabe-Handler ein.
 
 import { GAME_STATE } from './config.js';
 
@@ -8,9 +7,8 @@ export function setupInputHandlers(game) {
 
     const handleAction = () => {
         if (inputLocked) return;
-        if (game.currentState === GAME_STATE.PAUSED) return; // Verhindert Aktionen im Pausenmenü
+        if (game.currentState === GAME_STATE.PAUSED) return;
 
-        // Startet die Hintergrundmusik beim ersten Tastendruck
         if (!gameMusicStarted) {
             game.startBackgroundMusic();
             gameMusicStarted = true;
@@ -20,7 +18,6 @@ export function setupInputHandlers(game) {
     };
     
     document.addEventListener("keydown", (e) => {
-        // Pausieren mit Escape-Taste
         if (e.code === 'Escape') {
             if (game.currentState === GAME_STATE.PLAYING || game.currentState === GAME_STATE.PAUSED) {
                 game.togglePause();
@@ -36,7 +33,6 @@ export function setupInputHandlers(game) {
         handleAction();
     });
 
-    // Sperrt die Eingabe kurz nach dem Game Over, um versehentliche Neustarts zu verhindern
     game.onGameOver = () => {
         inputLocked = true;
         setTimeout(() => {

@@ -1,4 +1,3 @@
-// ui.js: Funktionen zum Rendern von UI-Elementen.
 
 import { BOARD_WIDTH, BOARD_HEIGHT } from './config.js';
 

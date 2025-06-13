@@ -1,4 +1,3 @@
-// assets.js: Lädt und verwaltet alle Spiel-Assets (Bilder und Sounds).
 
 function loadImage(src) {
     const img = new Image();

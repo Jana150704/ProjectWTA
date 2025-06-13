@@ -1,4 +1,3 @@
-// bird.js: Definiert die Bird-Klasse.
 
 import { BIRD_DEFAULTS, PHYSICS } from './config.js';
 
@@ -13,7 +12,7 @@ export class Bird {
 
     update() {
         this.velocityY += PHYSICS.GRAVITY;
-        this.y = Math.max(this.y + this.velocityY, 0); // Verhindert, dass der Vogel den oberen Rand verlässt
+        this.y = Math.max(this.y + this.velocityY, 0); 
     }
 
     flap() {

@@ -1,4 +1,3 @@
-// game.js: Die Hauptklasse für die Spiellogik.
 
 import { GAME_STATE } from './config.js';
 import { Bird } from './bird.js';
